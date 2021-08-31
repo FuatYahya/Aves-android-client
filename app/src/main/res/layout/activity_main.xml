@@ -6,39 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context="com.example.aves.MainActivity">
+    tools:context="com.example.aves.Activity.MainActivity">
 
-  <Button
-      android:id="@+id/button"
-      android:layout_width="119dp"
-      android:layout_height="wrap_content"
-      android:onClick="normal_file"
-      android:text="normal file" />
 
   <Button
       android:id="@+id/button2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:onClick="encrypted_file"
-      android:text="encrypted file" />
+      android:text="Choose content" />
+
 
   <Button
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Encrypt Video"
-      android:onClick="encryptVideo" />
-
-  <Button
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Play Video"
+      android:text="Play"
       android:onClick="playVideo" />
-
-  <com.google.android.exoplayer2.ui.PlayerView
-      android:id="@+id/exoplayerview"
-      android:layout_width="320dp"
-      android:layout_height="180dp"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      app:use_controller="false"/>
 
 </LinearLayout>

@@ -50,14 +50,16 @@ public class ActivityPlayer extends AppCompatActivity {
     private File mFile;
     private Uri mUri;
 
-    String key = "abebe beso bela.";
-    String nonce = "chala ha";
+    private String mKey;
+    private String mNonce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
         Bundle bundle = getIntent().getExtras();
+        mKey = bundle.getString("key");
+        mNonce = bundle.getString("nonce");
         mUri = Uri.parse(bundle.getString("uri"));
 
         initializeViews();
@@ -92,7 +94,7 @@ public class ActivityPlayer extends AppCompatActivity {
 
         playerView.setPlayer(player);
 
-        getCipher(key, nonce);
+        getCipher(mKey, mNonce);
 
         try {
             MediaSource mediaSource = buildMediaSource(mUri);

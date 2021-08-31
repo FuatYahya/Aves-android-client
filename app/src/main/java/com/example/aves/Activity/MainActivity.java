@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,13 +15,21 @@ import com.example.aves.R;
 public class MainActivity extends AppCompatActivity {
   private static final int PICKFILE_RESULT_OUT = 2;
 
-  private Uri mUri;
+  private EditText keyView, nonceView;
 
+  private Uri mUri;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    initializeViews();
+  }
+
+  private void initializeViews() {
+    keyView = findViewById(R.id.key);
+    nonceView = findViewById(R.id.nonce);
   }
 
   public void encrypted_file(View view) {
@@ -42,9 +52,15 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void playVideo(View view) {
-    Intent player = new Intent(this, ActivityPlayer.class);
-    player.putExtra("uri", mUri.toString());
-    startActivity(player);
+    if(mUri != null && keyView.getText().toString().length() > 0 && nonceView.getText().toString().length() > 0) {
+      Intent player = new Intent(this, ActivityPlayer.class);
+      player.putExtra("key", keyView.getText().toString());
+      player.putExtra("nonce", nonceView.getText().toString());
+      player.putExtra("uri", mUri.toString());
+      startActivity(player);
+    } else {
+      Toast.makeText(this, "no key, no nonce or no content provided", Toast.LENGTH_SHORT).show();
+    }
   }
 
 }
